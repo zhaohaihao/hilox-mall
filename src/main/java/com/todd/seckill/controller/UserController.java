@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
+
 /**
  * 用户Controller
  * @author Todd
@@ -25,6 +28,32 @@ public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
+
+    /**
+     * 获取otp短信
+     * @param telphone
+     * @return
+     */
+    @GetMapping("/getOtp")
+    @ResponseBody
+    public CommonResponse getOtp(@RequestParam(name = "telphone") String telphone) {
+        // 按规则生成otp验证码
+        Random random = new Random();
+        int randomInt = random.nextInt(99999) + 10000;
+        String otpCode = String.valueOf(randomInt);
+
+        // 将otp验证码与用户手机关联
+        httpServletRequest.getSession().setAttribute(telphone, randomInt);
+
+        // 将otp验证码发送给用户, 略
+        String message = "telphone: %s, optCode: %s";
+        System.out.println(String.format(message, telphone, otpCode));
+
+        return CommonResponse.create(null);
+    }
 
     /**
      * 获取对应用户信息
