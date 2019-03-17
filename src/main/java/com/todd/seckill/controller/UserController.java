@@ -1,6 +1,9 @@
 package com.todd.seckill.controller;
 
 import com.todd.seckill.controller.viewobject.UserVO;
+import com.todd.seckill.error.BussinessErrorEnum;
+import com.todd.seckill.error.BussinessException;
+import com.todd.seckill.response.CommonResponse;
 import com.todd.seckill.service.UserService;
 import com.todd.seckill.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;
@@ -29,9 +32,14 @@ public class UserController {
      */
     @GetMapping("/get")
     @ResponseBody
-    public UserVO getUser(@RequestParam(name = "id") Integer id) {
+    public CommonResponse getUser(@RequestParam(name = "id") Integer id) throws BussinessException {
         UserModel userModel = userService.getUserById(id);
-        return convertFromModel(userModel);
+
+        if (userModel == null) {
+            throw new BussinessException(BussinessErrorEnum.USER_NOT_EXIST);
+        }
+        UserVO userVO = convertFromModel(userModel);
+        return CommonResponse.create(userVO);
     }
 
     /**
