@@ -1,5 +1,10 @@
 package com.todd.seckill.service.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author Todd
  * @date 2019-03-17 17:06
@@ -14,21 +19,27 @@ public class UserModel {
     /**
      * 姓名
      */
+    @NotBlank(message = "用户名不能为空")
     private String name;
 
     /**
      * 性别, 1为男性, 2为女性
      */
+    @NotNull(message = "性别不能为空")
     private Byte gender;
 
     /**
      * 年龄
      */
+    @NotNull(message = "年龄不能为空")
+    @Min(value = 0, message = "年龄必须大于0岁")
+    @Max(value = 150, message = "年龄必须小于150岁")
     private Integer age;
 
     /**
      * 号码
      */
+    @NotBlank(message = "手机号不能为空")
     private String telphone;
 
     /**
@@ -44,6 +55,7 @@ public class UserModel {
     /**
      * 密码
      */
+    @NotBlank(message = "密码不能为空")
     private String encrptPassword;
 
     public Integer getId() {

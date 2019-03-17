@@ -8,6 +8,8 @@ import com.todd.seckill.error.BussinessErrorEnum;
 import com.todd.seckill.error.BussinessException;
 import com.todd.seckill.service.UserService;
 import com.todd.seckill.service.model.UserModel;
+import com.todd.seckill.validator.ValidationResult;
+import com.todd.seckill.validator.ValidatorImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserPasswordDOMapper userPasswordDOMapper;
 
+    @Autowired
+    private ValidatorImpl validator;
+
     @Override
     public UserModel getUserById(Integer id) {
         UserDO userDO = userDOMapper.selectByPrimaryKey(id);
@@ -48,11 +53,16 @@ public class UserServiceImpl implements UserService {
             throw new BussinessException(BussinessErrorEnum.PARAMETER_VALIDATION_ERROR);
         }
 
-        if (StringUtils.isNoneEmpty(userModel.getName())
-            || userModel.getGender() == null
-            || userModel.getAge() == null
-            || StringUtils.isNoneEmpty(userModel.getTelphone())) {
-            throw new BussinessException(BussinessErrorEnum.PARAMETER_VALIDATION_ERROR);
+        // if (StringUtils.isNoneEmpty(userModel.getName())
+        //     || userModel.getGender() == null
+        //     || userModel.getAge() == null
+        //     || StringUtils.isNoneEmpty(userModel.getTelphone())) {
+        //     throw new BussinessException(BussinessErrorEnum.PARAMETER_VALIDATION_ERROR);
+        // }
+
+        ValidationResult validate = validator.validate(userModel);
+        if (validate.isHasErrors()) {
+            throw new BussinessException(BussinessErrorEnum.PARAMETER_VALIDATION_ERROR, validate.getErrMsg());
         }
 
         UserDO userDO = convertFromModel(userModel);
