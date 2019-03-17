@@ -1,5 +1,6 @@
 package com.todd.seckill.controller;
 
+import com.alibaba.druid.util.StringUtils;
 import com.todd.seckill.controller.viewobject.UserVO;
 import com.todd.seckill.error.BussinessErrorEnum;
 import com.todd.seckill.error.BussinessException;
@@ -9,12 +10,11 @@ import com.todd.seckill.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import sun.misc.BASE64Encoder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.MessageDigest;
 import java.util.Random;
 
 /**
@@ -24,6 +24,7 @@ import java.util.Random;
  */
 @Controller
 @RequestMapping("/user")
+@CrossOrigin(allowCredentials = "true", allowedHeaders = "*")
 public class UserController extends BaseController {
 
     @Autowired
@@ -31,6 +32,67 @@ public class UserController extends BaseController {
 
     @Autowired
     private HttpServletRequest httpServletRequest;
+
+    @PostMapping("/login")
+    @ResponseBody
+    public CommonResponse login(@RequestParam(name = "telphone") String telphone,
+                                @RequestParam(name = "password") String password) throws Exception {
+        // 入参校验
+        if (StringUtils.isEmpty(telphone)
+            || StringUtils.isEmpty(password)) {
+            throw new BussinessException(BussinessErrorEnum.PARAMETER_VALIDATION_ERROR);
+        }
+
+        // 用户登录
+        UserModel userModel = userService.validateLogin(telphone, encodeByMD5(password));
+
+        // 将登录凭证加入到用户登录成功的session内
+        this.httpServletRequest.getSession().setAttribute("IS_LOGIN", true);
+        this.httpServletRequest.getSession().setAttribute("LOGIN_USER", userModel);
+
+        return CommonResponse.create(null);
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public CommonResponse register(@RequestParam(name = "telphone") String telphone,
+                                   @RequestParam(name = "otpCode") String otpCode,
+                                   @RequestParam(name = "name") String name,
+                                   @RequestParam(name = "gender") Integer gender,
+                                   @RequestParam(name = "age") Integer age,
+                                   @RequestParam(name = "password") String password) throws Exception {
+
+        // 验证手机对应的otpCode是否符合
+        String inSessionOtpCode = (String) this.httpServletRequest.getAttribute(telphone);
+        if (StringUtils.equals(otpCode, inSessionOtpCode)) {
+            throw new BussinessException(BussinessErrorEnum.PARAMETER_VALIDATION_ERROR, "短信验证码不符合");
+        }
+
+        // 用户注册
+        UserModel userModel = new UserModel();
+        userModel.setName(name);
+        userModel.setGender(new Byte(String.valueOf(gender)));
+        userModel.setAge(age);
+        userModel.setTelphone(telphone);
+        userModel.setRegisterMode("byPhone");
+        userModel.setEncrptPassword(encodeByMD5(password));
+
+        userService.register(userModel);
+        return CommonResponse.create(null);
+    }
+
+    /**
+     * MD5加密
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    public String encodeByMD5(String password) throws Exception {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        BASE64Encoder base64Encoder = new BASE64Encoder();
+        String newPassword = base64Encoder.encode(md5.digest(password.getBytes("UTF-8")));
+        return password;
+    }
 
     /**
      * 获取otp短信

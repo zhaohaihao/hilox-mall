@@ -11,6 +11,7 @@ public enum BussinessErrorEnum implements CommonError {
     UNKNOW_ERROR(10002, "未知错误"),
 
     USER_NOT_EXIST(20001, "用户不存在"),
+    USER_LOGIN_FAIL(20002, "用户手机号或密码不正确"),
     ;
 
     private int errCode;

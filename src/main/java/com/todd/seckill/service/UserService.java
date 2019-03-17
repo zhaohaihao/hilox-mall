@@ -1,5 +1,6 @@
 package com.todd.seckill.service;
 
+import com.todd.seckill.error.BussinessException;
 import com.todd.seckill.service.model.UserModel;
 
 /**
@@ -14,4 +15,17 @@ public interface UserService {
      * @param id
      */
     UserModel getUserById(Integer id);
+
+    /**
+     * 用户注册
+     * @param userModel
+     */
+    void register(UserModel userModel) throws BussinessException;
+
+    /**
+     * 校验登录
+     * @param telphone
+     * @param encrptPassword
+     */
+    UserModel validateLogin(String telphone, String encrptPassword) throws BussinessException;
 }
