@@ -1,6 +1,6 @@
-package com.todd.seckill.dao;
+package com.hilox.seckill.dao;
 
-import com.todd.seckill.dataobject.UserDO;
+import com.hilox.seckill.dataobject.UserDO;
 
 public interface UserDOMapper {
     int deleteByPrimaryKey(Integer id);

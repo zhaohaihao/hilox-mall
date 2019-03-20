@@ -1,8 +1,8 @@
-package com.todd.seckill.error;
+package com.hilox.seckill.error;
 
 /**
  * 业务异常
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 22:44
  */
 public class BussinessException extends Exception implements CommonError {

@@ -1,8 +1,8 @@
-package com.todd.seckill.response;
+package com.hilox.seckill.response;
 
 /**
  * 返回结果对象
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 22:23
  */
 public class CommonResponse {

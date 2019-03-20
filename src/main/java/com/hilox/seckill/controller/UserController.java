@@ -1,12 +1,12 @@
-package com.todd.seckill.controller;
+package com.hilox.seckill.controller;
 
 import com.alibaba.druid.util.StringUtils;
-import com.todd.seckill.controller.viewobject.UserVO;
-import com.todd.seckill.error.BussinessErrorEnum;
-import com.todd.seckill.error.BussinessException;
-import com.todd.seckill.response.CommonResponse;
-import com.todd.seckill.service.UserService;
-import com.todd.seckill.service.model.UserModel;
+import com.hilox.seckill.controller.viewobject.UserVO;
+import com.hilox.seckill.error.BussinessErrorEnum;
+import com.hilox.seckill.error.BussinessException;
+import com.hilox.seckill.response.CommonResponse;
+import com.hilox.seckill.service.UserService;
+import com.hilox.seckill.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.Random;
 
 /**
  * 用户Controller
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 16:27
  */
 @Controller

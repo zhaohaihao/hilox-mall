@@ -1,8 +1,8 @@
-package com.todd.seckill.error;
+package com.hilox.seckill.error;
 
 /**
  * 业务异常枚举
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 22:36
  */
 public enum BussinessErrorEnum implements CommonError {

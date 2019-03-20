@@ -1,4 +1,4 @@
-package com.todd.seckill.service.model;
+package com.hilox.seckill.service.model;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 17:06
  */
 public class UserModel {

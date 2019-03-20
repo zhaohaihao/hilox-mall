@@ -20,7 +20,7 @@
         </jdbcConnection>
 
         <!-- 生成DataObject类存放位置 -->
-        <javaModelGenerator targetPackage="com.todd.seckill.dataobject" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.hilox.seckill.dataobject" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -31,7 +31,7 @@
         </sqlMapGenerator>
 
         <!-- 生成Dao类存放位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.todd.seckill.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.hilox.seckill.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

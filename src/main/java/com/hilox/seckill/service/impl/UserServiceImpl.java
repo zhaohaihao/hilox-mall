@@ -1,15 +1,15 @@
-package com.todd.seckill.service.impl;
+package com.hilox.seckill.service.impl;
 
-import com.todd.seckill.dao.UserDOMapper;
-import com.todd.seckill.dao.UserPasswordDOMapper;
-import com.todd.seckill.dataobject.UserDO;
-import com.todd.seckill.dataobject.UserPasswordDO;
-import com.todd.seckill.error.BussinessErrorEnum;
-import com.todd.seckill.error.BussinessException;
-import com.todd.seckill.service.UserService;
-import com.todd.seckill.service.model.UserModel;
-import com.todd.seckill.validator.ValidationResult;
-import com.todd.seckill.validator.ValidatorImpl;
+import com.hilox.seckill.dao.UserDOMapper;
+import com.hilox.seckill.dao.UserPasswordDOMapper;
+import com.hilox.seckill.dataobject.UserDO;
+import com.hilox.seckill.dataobject.UserPasswordDO;
+import com.hilox.seckill.error.BussinessException;
+import com.hilox.seckill.service.model.UserModel;
+import com.hilox.seckill.validator.ValidationResult;
+import com.hilox.seckill.validator.ValidatorImpl;
+import com.hilox.seckill.error.BussinessErrorEnum;
+import com.hilox.seckill.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 用户Service实现类
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 16:30
  */
 @Service

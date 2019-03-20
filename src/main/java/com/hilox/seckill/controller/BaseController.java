@@ -1,8 +1,8 @@
-package com.todd.seckill.controller;
+package com.hilox.seckill.controller;
 
-import com.todd.seckill.error.BussinessErrorEnum;
-import com.todd.seckill.error.BussinessException;
-import com.todd.seckill.response.CommonResponse;
+import com.hilox.seckill.error.BussinessException;
+import com.hilox.seckill.error.BussinessErrorEnum;
+import com.hilox.seckill.response.CommonResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * 基类Controller
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 23:06
  */
 public class BaseController {

@@ -1,8 +1,8 @@
-package com.todd.seckill.dataobject;
+package com.hilox.seckill.dataobject;
 
 /**
  * 用户密码
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 16:22
  */
 public class UserPasswordDO {

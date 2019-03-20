@@ -1,4 +1,4 @@
-package com.todd.seckill.validator;
+package com.hilox.seckill.validator;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Todd
+ * @author Hilox
  * @date 2019-03-18 02:21
  */
 public class ValidationResult {

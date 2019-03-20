@@ -1,4 +1,4 @@
-package com.todd.seckill.validator;
+package com.hilox.seckill.validator;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import javax.validation.Validator;
 import java.util.Set;
 
 /**
- * @author Todd
+ * @author Hilox
  * @date 2019-03-18 02:25
  */
 @Component

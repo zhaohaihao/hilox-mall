@@ -1,7 +1,7 @@
-package com.todd.seckill.controller.viewobject;
+package com.hilox.seckill.controller.viewobject;
 
 /**
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 22:00
  */
 public class UserVO {

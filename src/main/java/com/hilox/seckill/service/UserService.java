@@ -1,11 +1,11 @@
-package com.todd.seckill.service;
+package com.hilox.seckill.service;
 
-import com.todd.seckill.error.BussinessException;
-import com.todd.seckill.service.model.UserModel;
+import com.hilox.seckill.error.BussinessException;
+import com.hilox.seckill.service.model.UserModel;
 
 /**
  * 用户Service
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 16:29
  */
 public interface UserService {

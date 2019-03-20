@@ -1,8 +1,8 @@
-package com.todd.seckill.error;
+package com.hilox.seckill.error;
 
 /**
  * 返回错误信息
- * @author Todd
+ * @author Hilox
  * @date 2019-03-17 22:34
  */
 public interface CommonError {
