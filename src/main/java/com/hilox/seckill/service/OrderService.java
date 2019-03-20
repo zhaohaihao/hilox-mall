@@ -17,5 +17,5 @@ public interface OrderService {
      * @param amount
      * @return
      */
-    OrderModel createModel(Integer userId, Integer itemId, Integer amount) throws BussinessException;
+    OrderModel createModel(Integer userId, Integer itemId, Integer promoId, Integer amount) throws BussinessException;
 }

@@ -51,8 +51,7 @@ public class ItemController extends BaseController {
         itemModel.setImgUrl(imgUrl);
 
         ItemModel item = itemService.createItem(itemModel);
-        ItemVO itemVO = new ItemVO();
-        BeanUtils.copyProperties(item, itemVO);
+        ItemVO itemVO = convertVOFromModel(item);
 
         return CommonResponse.create(itemVO);
     }
@@ -66,8 +65,7 @@ public class ItemController extends BaseController {
     public CommonResponse listItem() {
         List<ItemModel> itemModelList = itemService.listItem();
         List<ItemVO> collect = itemModelList.stream().map(itemModel -> {
-            ItemVO itemVO = new ItemVO();
-            BeanUtils.copyProperties(itemModel, itemVO);
+            ItemVO itemVO = convertVOFromModel(itemModel);
             return itemVO;
         }).collect(Collectors.toList());
         return CommonResponse.create(collect);
@@ -81,8 +79,30 @@ public class ItemController extends BaseController {
     @ResponseBody
     public CommonResponse getItem(@RequestParam(name = "id") Integer id) {
         ItemModel itemModel = itemService.getItemById(id);
+        ItemVO itemVO = convertVOFromModel(itemModel);
+
+        return CommonResponse.create(itemVO);
+    }
+
+    /**
+     * 模型转换
+     * @param itemModel
+     * @return
+     */
+    private ItemVO convertVOFromModel(ItemModel itemModel) {
+        if (itemModel == null) {
+            return null;
+        }
         ItemVO itemVO = new ItemVO();
         BeanUtils.copyProperties(itemModel, itemVO);
-        return CommonResponse.create(itemVO);
+        if(itemModel.getPromoModel() != null) {
+            itemVO.setPromoStatus(itemModel.getPromoModel().getStatus());
+            itemVO.setPromoId(itemModel.getPromoModel().getId());
+            itemVO.setStartDate(itemModel.getPromoModel().getStartDate());
+            itemVO.setPromoPrice(itemModel.getPromoModel().getPromoItemPrice());
+        } else {
+            itemVO.setPromoStatus(0);
+        }
+        return itemVO;
     }
 }

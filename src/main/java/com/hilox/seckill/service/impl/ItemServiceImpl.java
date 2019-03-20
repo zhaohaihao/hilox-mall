@@ -7,7 +7,9 @@ import com.hilox.seckill.dataobject.ItemStockDO;
 import com.hilox.seckill.error.BussinessErrorEnum;
 import com.hilox.seckill.error.BussinessException;
 import com.hilox.seckill.service.ItemService;
+import com.hilox.seckill.service.PromoService;
 import com.hilox.seckill.service.model.ItemModel;
+import com.hilox.seckill.service.model.PromoModel;
 import com.hilox.seckill.validator.ValidationResult;
 import com.hilox.seckill.validator.ValidatorImpl;
 import org.springframework.beans.BeanUtils;
@@ -35,6 +37,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemStockDOMapper itemStockDOMapper;
+
+    @Autowired
+    private PromoService promoService;
 
     @Override
     @Transactional
@@ -79,6 +84,12 @@ public class ItemServiceImpl implements ItemService {
         ItemStockDO itemStockDO = itemStockDOMapper.selectByItemId(itemDO.getId());
         ItemModel itemModel = convertModelFromDataObject(itemDO, itemStockDO);
 
+        // 获取活动商品信息
+        PromoModel promoModel = promoService.getPromoByItemId(itemModel.getId());
+
+        if (promoModel != null && promoModel.getStatus().intValue() != 3) {
+            itemModel.setPromoModel(promoModel);
+        }
         return itemModel;
     }
 
