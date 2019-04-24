@@ -9,6 +9,7 @@
     <version>1.0</version>
     <modules>
         <module>hilox-eureka</module>
+        <module>hilox-user</module>
     </modules>
 
     <name>hilox-mall</name>
