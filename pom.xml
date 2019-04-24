@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.hilox.mall</groupId>
+    <artifactId>hilox-mall</artifactId>
+    <version>1.0</version>
+    <modules>
+        <module>hilox-eureka</module>
+    </modules>
+
+    <name>hilox-mall</name>
+    <description>
+        hilox-mall 一个基于SpringBoot和SpringCloud的秒杀系统。
+    </description>
+    <packaging>pom</packaging>
+
+    <developers>
+        <developer>
+            <id>hilox</id>
+            <name>zhaohaihao</name>
+            <email>zhh2933@gmail.com</email>
+            <url>https://www.zhaohaihao.com</url>
+        </developer>
+    </developers>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <java.compiler>1.8</java.compiler>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
