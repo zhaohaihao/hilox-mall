@@ -10,6 +10,7 @@
     <modules>
         <module>hilox-eureka</module>
         <module>hilox-user</module>
+        <module>hilox-common</module>
     </modules>
 
     <name>hilox-mall</name>
